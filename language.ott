@@ -1,0 +1,17 @@
+embed
+{{ tex-preamble
+\newcommand\token[1]{%
+  \mathbf{#1}%
+}
+}}
+
+metavar x ::= {{ com variables }}
+
+grammar
+e {{ tex e }} :: 'expr_' ::= {{ com expressions }}
+  | x                ::   :: var   {{ tex [[x]] }}
+  | fun x . e        ::   :: lam   {{ tex \lambda [[x]].\ [[e]] }}
+  | e1 @ e2          ::   :: app   {{ tex [[e1]]\ [[e2]] }}
+  | let x = e1 in e2 ::   :: let   {{ tex \token{let}\ [[x]] = [[e1]]\ \token{in}\ [[e2]] }}
+  | ( e )            :: S :: paren {{ tex ([[e]]) }}
+  | ?( e )?          :: M :: assoc {{ tex [[e]] }}

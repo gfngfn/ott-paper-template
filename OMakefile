@@ -1,0 +1,27 @@
+.PHONY: all paper clean
+.DEFAULT: all
+all: paper
+
+LATEX = latex
+TETEX2_ENABLED = true
+USEPDFLATEX = true
+
+MAIN = paper
+OTTNAME = language
+BIBNAME = bibliography
+
+PAPERFILES = $(removesuffix $(glob */*.otex))
+TEXDEPS[] =
+	$(OTTNAME).ott
+	$(BIBNAME).bib
+
+LaTeXDocument($(MAIN), $(PAPERFILES))
+OttLaTeX($(OTTNAME), $(PAPERFILES))
+
+paper: $(MAIN).pdf
+
+clean:
+	rm -f *.aux *.log *.fls *.dvi *.pdf *.ps *.synctex.gz
+	rm -f *.bbl *.blg
+	rm -f *.omc
+	rm -f $(OTTNAME).tex $(OTTNAME).$(OTTSYSEXT)

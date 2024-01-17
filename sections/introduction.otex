@@ -1,0 +1,11 @@
+\section{Introduction}
+\indent
+  The syntax for expressions in an untyped lambda calculus \cite{Pierce2002}
+  is defined by:
+  \[
+    [[e]] ::= [[x]] \mid [[fun x . e]] \mid [[e @ e]]
+  \]
+  where \([[x]]\) ranges over the countably infinite set of variables.
+  For brevity, we often use \emph{let-expressions} \([[let x = e1 in e2]]\)
+  as a syntactic sugar for \([[(fun x . e2) @ e1]]\).
+\par
